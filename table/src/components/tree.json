@@ -1,0 +1,103 @@
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "nodeName": "root",
+    "updateDate": "2019-06-28 10:57:06",
+    "nodeChildren": [
+      {
+        "nodeName": "12121211_role",
+        "updateDate": "2019-06-18 15:45:58",
+        "nodeChildren": [],
+        "resClass": "590567822237765632",
+        "distance": 1,
+        "childrenNum": 1,
+        "nodeParent": "1",
+        "distanceToRoot": 1,
+        "nodeId": "590567822288097280",
+        "createDate": "2019-06-18 15:45:41"
+      },
+      {
+        "nodeName": "admin0424_role",
+        "updateDate": "2019-05-28 16:05:47",
+        "nodeChildren": [],
+        "resClass": "570675818582380544",
+        "distance": 1,
+        "childrenNum": 7,
+        "nodeParent": "1",
+        "distanceToRoot": 1,
+        "nodeId": "570675818674655232",
+        "createDate": "2019-04-24 18:21:57"
+      },
+      {
+        "nodeName": "admin2_role181444",
+        "updateDate": "2019-04-17 16:46:36",
+        "nodeChildren": [],
+        "resClass": "8",
+        "distance": 1,
+        "childrenNum": 14,
+        "nodeParent": "1",
+        "distanceToRoot": 1,
+        "nodeId": "8",
+        "createDate": "2019-03-21 09:51:52"
+      },
+      {
+        "nodeName": "admin_role4",
+        "updateDate": "2019-04-12 17:38:45",
+        "nodeChildren": [],
+        "resClass": "1",
+        "distance": 1,
+        "childrenNum": 4,
+        "nodeParent": "1",
+        "distanceToRoot": 1,
+        "nodeId": "2",
+        "createDate": "2019-03-20 17:30:11"
+      },
+      {
+        "nodeName": "qqqqqqqqqqqqqqqqqqqq_role",
+        "updateDate": "2019-05-17 13:31:57",
+        "nodeChildren": [],
+        "resClass": "578937756953219072",
+        "distance": 1,
+        "childrenNum": 1,
+        "nodeParent": "1",
+        "distanceToRoot": 1,
+        "nodeId": "578937757007745024",
+        "createDate": "2019-05-17 13:31:57"
+      },
+      {
+        "nodeName": "qqszz_role",
+        "updateDate": "2019-06-18 15:04:36",
+        "nodeChildren": [],
+        "resClass": "590557484771577856",
+        "distance": 1,
+        "childrenNum": 1,
+        "nodeParent": "1",
+        "distanceToRoot": 1,
+        "nodeId": "590557484880629760",
+        "createDate": "2019-06-18 15:04:36"
+      },
+      {
+        "nodeName": "高级组_role7",
+        "updateDate": "2019-04-11 14:46:49",
+        "nodeChildren": [],
+        "resClass": "9",
+        "distance": 1,
+        "childrenNum": 3,
+        "nodeParent": "1",
+        "distanceToRoot": 1,
+        "nodeId": "10",
+        "createDate": "2019-03-21 10:15:53"
+      }
+    ],
+    "resClass": "0",
+    "isOpen": 1,
+    "distance": 0,
+    "childrenNum": 7,
+    "nodeParent": "0",
+    "distanceToRoot": 0,
+    "resChildren": [],
+    "nodeId": "1",
+    "createDate": "2019-03-20 17:29:29"
+  }
+}
