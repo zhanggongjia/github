@@ -3,9 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Vuetree from 'vue-simple-tree'
 
-Vue.use(Vuetree)
+
+import 'vue-tree-halower/dist/halower-tree.min.css' // 你可以自定义树的样式
+import VTree from 'vue-tree-halower'
+
+Vue.use(VTree)
 
 Vue.config.productionTip = false
 
