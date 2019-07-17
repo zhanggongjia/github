@@ -1,11 +1,12 @@
 <template>
   <div :class="classes" role="tree" onselectstart="return false">
     <ul :class="containerClasses" role="group">
-      <tree-item v-for="(child, index) in data" :key="index" :data="child" :text-field-name="textFieldName" :value-field-name="valueFieldName" :children-field-name="childrenFieldName" :item-events="itemEvents" :whole-row="wholeRow" :show-checkbox="showCheckbox" :allow-transition="allowTransition" :height="sizeHeight" :parent-item="data" :draggable="draggable" :drag-over-background-color="dragOverBackgroundColor" :on-item-click="onItemClick" :on-item-toggle="onItemToggle" :on-item-drag-start="onItemDragStart" :on-item-drag-end="onItemDragEnd" :on-item-drop="onItemDrop" :klass="index === data.length-1?'tree-last':''">
+      <tree-item v-for="(child, index) in data" :key="index" :data="child" :removermodel="removermodel" :text-field-name="textFieldName" :value-field-name="valueFieldName" :children-field-name="childrenFieldName" :item-events="itemEvents" :whole-row="wholeRow" :show-checkbox="showCheckbox" :allow-transition="allowTransition" :height="sizeHeight" :parent-item="data" :draggable="draggable" :drag-over-background-color="dragOverBackgroundColor" :on-item-click="onItemClick" :on-item-toggle="onItemToggle" :on-item-drag-start="onItemDragStart" :on-item-drag-end="onItemDragEnd" :on-item-drop="onItemDrop" :klass="index === data.length-1?'tree-last':''">
         <template slot-scope="_">
           <slot :vm="_.vm" :model="_.model">
-            <i :class="_.vm.themeIconClasses" role="presentation" v-if="!_.model.loading"></i>
-            <span v-html="_.model[textFieldName]"></span>
+            <!-- <i :class="_.vm.themeIconClasses" role="presentation" v-if="!_.model.loading"></i> -->
+            <!-- <span @click="clickspan">{{_.model[textFieldName]}}</span> -->
+            <!-- <span v-html="_.model[textFieldName]"></span> -->
           </slot>
         </template>
       </tree-item>
@@ -82,6 +83,28 @@ export default {
     }
   },
   methods: {
+    removerData (list, oriItem) {
+      for (var i = 0; i < list.length; i++) {
+        console.log(list[i])
+        if (list[i].id === oriItem.id) {
+          console.log(list[i].id, oriItem.id);
+          list.splice(i, 1);
+          return
+        }
+        this.removerData(list[i].children, oriItem)
+      }
+    },
+    removermodel (oriNode, oriItem, e) {
+      console.log(oriNode)
+      console.log(oriItem)
+      console.log(e)
+      console.log(this.data)
+      this.removerData(this.data, oriItem)
+
+    },
+    clickspan () {
+      alert(11)
+    },
     initializeData (items) {
       if (items && items.length > 0) {
         for (let i in items) {
@@ -101,6 +124,8 @@ export default {
         this.selected = item.selected || false
         this.disabled = item.disabled || false
         this.loading = item.loading || false
+        this.loadings = item.loadings || false
+        this.edutHtml = item[textFieldName] || ''
         this[childrenFieldName] = item[childrenFieldName] || []
       }
 

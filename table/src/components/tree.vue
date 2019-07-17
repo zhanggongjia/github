@@ -2,7 +2,7 @@
   <li role="treeitem" draggable="false" class="tree-node" :class="{'tree-closed': !open,'tree-open': open}">
     <i role="presentation" class="tree-icon tree-ocl" @click="clickShow"></i>
     <div class="tree-anchor">
-      <i role="presentation" v-if="checkbox" class="tree-icon tree-checkbox" @click="clickCheckbox(model)" :class="{'tree-selected': selected}"></i>
+      <i role="presentation" v-if="checkbox" class="tree-icon tree-checkbox" :class="{'tree-selected': selected}"></i>
       <i role="presentation" class="tree-icon tree-themeicon"></i>
       <span>{{ model.nodeName }}--{{open}}---{{model.selected=1}}</span>
     </div>

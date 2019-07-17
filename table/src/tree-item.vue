@@ -3,18 +3,31 @@
     <div role="presentation" :class="wholeRowClasses" v-if="isWholeRow">&nbsp;</div>
     <i class="tree-icon tree-ocl" role="presentation" @click="handleItemToggle"></i>
     <div :class="anchorClasses" v-on="events">
-      <i class="tree-icon tree-checkbox" role="presentation" v-if="showCheckbox && !model.loading"></i>
-      <slot :vm="this" :model="model">
-        <i :class="themeIconClasses" role="presentation" v-if="!model.loading"></i>
-        <span v-html="model[textFieldName]"></span>
+      <i class="tree-icon tree-checkbox" role="presentation" v-if="showCheckbox && !model.loading" @click="handleItemClick($event)"></i>
+      <i :class="themeIconClasses" role="presentation" v-if="!model.loading"></i>
+      <span v-if="!this.model.loadings" @click="nameClick($event)">{{model[textFieldName]}}</span>
+      <div v-if="!!this.model.loadings" style="display: inline-block">
+        <input type="text" v-model="model.edutHtml" style="width: 175px; padding:2px 1px;">
+        <i class="tree-icon tree-ok" @click="yesClick($event)" role="presentation"></i>
+        <i class="tree-icon tree-no" @click="closeClick($event)" role="presentation"></i>
+      </div>
+      <slot :vm="this" :model="model" @click="nameClick($event)">
+        <!-- <i :class="themeIconClasses" role="presentation" v-if="!model.loading"></i> -->
+        <!-- <span @click="nameClick($event)">{{model[textFieldName]+11111}}</span> -->
+        <!-- <span v-html="model[textFieldName]+11111" @click="nameClick($event)"></span> -->
       </slot>
+      <i v-if="!this.model.loadings" style="width: 20px; height: 20px;" class="tree-icon tree-editicon" @click="editClick($event)" role="presentation"></i>
+      <i v-if="!this.model.loadings" style="width: 20px; height: 20px;" class="tree-icon tree-addicon" @click="editClick($event)" role="presentation"></i>
+      <i v-if="!this.model.loadings" style="width: 20px; height: 20px;" class="tree-icon tree-deleteicon" @click="deleteClick($event)" role="presentation"></i>
+
     </div>
     <ul role="group" ref="group" class="tree-children" v-if="isFolder" :style="groupStyle">
-      <tree-item v-for="(child, index) in model[childrenFieldName]" :key="index" :data="child" :text-field-name="textFieldName" :value-field-name="valueFieldName" :children-field-name="childrenFieldName" :item-events="itemEvents" :whole-row="wholeRow" :show-checkbox="showCheckbox" :allow-transition="allowTransition" :height="height" :parent-item="model[childrenFieldName]" :draggable="draggable" :drag-over-background-color="dragOverBackgroundColor" :on-item-click="onItemClick" :on-item-toggle="onItemToggle" :on-item-drag-start="onItemDragStart" :on-item-drag-end="onItemDragEnd" :on-item-drop="onItemDrop" :klass="index === model[childrenFieldName].length-1?'tree-last':''">
+      <tree-item v-for="(child, index) in model[childrenFieldName]" :key="index" :data="child" :text-field-name="textFieldName" :value-field-name="valueFieldName" :children-field-name="childrenFieldName" :item-events="itemEvents" :whole-row="wholeRow" :show-checkbox="showCheckbox" :allow-transition="allowTransition" :height="height" :parent-item="model[childrenFieldName]" :draggable="draggable" :drag-over-background-color="dragOverBackgroundColor" :removermodel="removermodel" :on-item-click="onItemClick" :on-item-toggle="onItemToggle" :on-item-drag-start="onItemDragStart" :on-item-drag-end="onItemDragEnd" :on-item-drop="onItemDrop" :klass="index === model[childrenFieldName].length-1?'tree-last':''">
         <template slot-scope="_">
           <slot :vm="_.vm" :model="_.model">
-            <i :class="_.vm.themeIconClasses" role="presentation" v-if="!model.loading"></i>
-            <span v-html="_.model[textFieldName]"></span>
+            <!-- <i :class="_.vm.themeIconClasses" role="presentation" v-if="!model.loading"></i> -->
+            <!-- <span @click="nameClick($event)">{{model[textFieldName]+11111}}</span> -->
+            <!-- <span v-html="_.model[textFieldName]+11111" @click="nameClick($event)"></span> -->
           </slot>
         </template>
       </tree-item>
@@ -38,6 +51,9 @@ export default {
     draggable: { type: Boolean, default: false },
     dragOverBackgroundColor: { type: String },
     onItemClick: {
+      type: Function, default: () => false
+    },
+    removermodel: {
       type: Function, default: () => false
     },
     onItemToggle: {
@@ -148,6 +164,26 @@ export default {
         this.onItemToggle(this, this.model)
       }
     },
+    nameClick (e) {
+      console.log(this.model)
+    },
+    editClick (e) {
+      this.model.edutHtml = this.model.text;
+      this.model.loadings = true;
+    },
+    closeClick () {
+      this.model.edutHtml = this.model.text;
+      this.model.loadings = false;
+    },
+    yesClick () {
+      this.model.text = this.model.edutHtml;
+      this.model.loadings = false;
+    },
+    deleteClick (e) {
+      console.log(e)
+      console.log(this.model)
+      this.removermodel(this, this.model, e)
+    },
     handleGroupMaxHeight () {
       if (!!this.allowTransition) {
         let length = 0
@@ -166,6 +202,7 @@ export default {
     },
     handleItemClick (e) {
       if (this.model.disabled) return
+      console.log(this.model)
       this.model.selected = !this.model.selected
       this.onItemClick(this, this.model, e)
     },
@@ -183,7 +220,7 @@ export default {
   created () {
     const self = this
     const events = {
-      'click': this.handleItemClick,
+      // 'click': this.handleItemClick,
       'mouseover': this.handleItemMouseOver,
       'mouseout': this.handleItemMouseOut
     }
@@ -210,4 +247,22 @@ export default {
 </script>
 <style lang="less">
 @import "./less/style";
+.tree-default .tree-editicon {
+  background: url("./edit.png") no-repeat;
+  background-size: 100% 100%;
+}
+.tree-default .tree-ok {
+  background-position: -3px -67px;
+}
+.tree-default .tree-no {
+  background-position: -37px -67px;
+}
+.tree-default .tree-deleteicon {
+  background: url("./delete.png") no-repeat;
+  background-size: 100% 100%;
+}
+.tree-default .tree-addicon {
+  background: url("./add.png") no-repeat;
+  background-size: 100% 100%;
+}
 </style>
