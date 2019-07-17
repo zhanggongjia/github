@@ -1,0 +1,77 @@
+.checktree, .checktree *{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.checktree ul {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.checktree li {
+  float: left;
+  padding: 3px 0;
+  width: 100%;
+}
+
+.checktree li label {
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 4px 0 2px 0;
+  font-size: 12px;
+  line-height: 15px;
+  float: left;
+}
+
+.checktree li .arrow {
+  width: 14px;
+  height: 14px;
+  margin: 5px 8px 0;
+  cursor: pointer;
+  float: left;
+}
+
+.checktree li .collapsed {
+  background: url('./add.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.checktree li .expanded {
+  background: url('./add.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.checktree li .checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  float: left;
+  background: url('./add.png') no-repeat;
+  background-size: 100% 100%;
+  margin-right: 7px;
+}
+
+.checktree li .checked {
+  background-position: -15px 0;
+}
+
+.checktree li .half_checked {
+  background-position: -31px 0;
+}
+
+.checktree li li .arrow {
+  margin-left: 24px;
+}
+
+.checktree li li li .arrow {
+  margin-left: 48px;
+}
+
+.checktree li li li li .arrow {
+  margin-left: 72px;
+}
+
+.checktree li li li li li .arrow {
+  margin-left: 96px;
+}
