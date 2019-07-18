@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery highchecktree Plugin Demo</title>
+  <script type="text/javascript" src="../../js/jquery.js"></script>
+  <script type="text/javascript" src="../js/highchecktree.js"></script>
+  <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="../css/highCheckTree.css" />
+  <style type="text/css">
+    body {
+      font-family: 'Open Sans';
+      font-size: 14px;
+    }
+
+    #main-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    #tree-container {
+      width: 400px;
+      height: 500px;
+      ;
+      background-color: pink;
+    }
+
+    #tree-container label.hover {
+      color: red;
+    }
+
+    .checktree {
+      width: 400px;
+      height: 500px;
+      background-color: pink;
+      overflow: auto;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="main-container">
+    <h1>jQuery highchecktree Plugin Demo</h1>
+    <div id="tree-container"></div>
+  </div>
+  <script>
+    // var mockData = [];
+    // var data = [];
+    // function createtree(list, datas) {
+    //   for (var i = 0; i < list.length; i++) {
+    //     datas.push(
+    //       {
+    //         item: list[i].item,
+    //         children: []
+    //       }
+    //     )
+    //     if (i > 98) break;
+    //     createtree(list[i].children, datas[i].children);
+    //   }
+    // };
+    // createtree(mockData, data);
+
+
+    // console.log(mockData)
+    // console.log(data)
+  </script>
+  <script src="../js/higt.js"></script>
+  <script>
+    var mockData = []
+    var num = 3;
+    var nums = 100;
+    for (var i = 0; i < num; i++) {
+      mockData.push(
+        {
+          item: { id: 'id' + i, label: 'label' + i, checked: false },
+          children: []
+        }
+      )
+      for (var t = 0; t < nums; t++) {
+        mockData[i].children.push(
+          {
+            item: { id: 'id' + i + '--' + t, label: 'label' + i + '--' + t, checked: false },
+            children: []
+          }
+        )
+      }
+    }
+    console.log(mockData)
+    // highCheckTree
+    // uploadTree
+    $('#tree-container').uploadTree({
+      data: mockData
+    });
+
+  </script>
+</body>
+
+
+
+</html>
