@@ -1,7 +1,15 @@
 <template>
   <div class="newclient">
     <Button @click="ShowNewclient = true" style="margin-left: 30px;" type="primary">新建客户</Button>
-    <Drawer title="Create" v-model="ShowNewclient" width="720" :styles="styles">
+    <Drawer title="客户详情" v-model="ShowNewclient" width="720" :styles="styles">
+      <div class="detailTop">
+        <div><span class="attr">姓名：</span><span>孙蓝蓝</span></div>
+        <div><span class="attr">职位：</span><span>孙蓝蓝</span></div>
+        <div><span class="attr">手机号：</span><span>孙蓝蓝</span></div>
+        <div><span class="attr">号码归属地：</span><span>孙蓝蓝</span></div>
+        <div><span class="attr">企业名称：</span><span>孙蓝蓝</span></div>
+        <div><span class="attr">电话结果：</span><span>孙蓝蓝</span></div>
+      </div>
       <Form :model="formData">
         <Row :gutter="32">
           <Col span="12">
