@@ -1,10 +1,10 @@
 <template>
   <Modal v-model="showNowdoing" title="进行中" @on-ok="ok" @on-cancel="cancel" className="newtask" :styles="{top: '80px'}">
-    <Form ref="Nowdoingdata" :model="Nowdoingdata" :label-width="80">
+    <Form ref="Nowdoingdata" :model="Nowdoingdata" :label-width="68">
       <div class="title">
         <p>2019-06-18任务<span> (过期)</span></p>
         <p class="source">数据源： 线索再分配</p>
-        <Button size="small" type="error" class="closetask">终止任务</Button>
+        <Button size="small" type="error" class="closetask" @click="closetask">终止任务</Button>
       </div>
       <div class="task">
         <FormItem label="任务周期">
@@ -108,14 +108,11 @@ export default {
     },
     cancel () {
       this.$Message.info('Clicked cancel');
+    },
+    closetask() {
+      alert('终止')
     }
   },
-  created () {
-    console.log(this.Nowdoingdata);
-  },
-  mounted () {
-    console.log(this.Nowdoingdata);
-  }
 }
 </script>
 
@@ -167,8 +164,7 @@ export default {
 .newtask .task {
   width: 460px;
   margin: 0 auto;
-  padding-top: 10px;
-  padding-bottom: 5px;
+  padding: 10px 0 5px 6px;
   border: 1px solid #e1e1e1;
 }
 .newtask .ivu-form-item {

@@ -1,7 +1,7 @@
 <template>
   <Modal v-model="shownewtask" title="新建任务" @on-ok="ok" @on-cancel="cancel" className="newtask" :styles="{top: '80px'}">
-    <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-      <FormItem label="" prop="name" className="newtask1" style="margin-left: -56px;">
+    <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="72">
+      <FormItem label="" prop="name" className="newtask1" style="margin-left: -58px;">
         <Input v-model="formValidate.name" placeholder="输入任务名" style="width: 360px;"></Input>
       </FormItem>
       <div class="task">
@@ -44,7 +44,6 @@ export default {
     return {
       shownewtask: false,
       value: '',
-
       formValidate: {
         name: '',
         city: 'day',
