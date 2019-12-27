@@ -9,7 +9,7 @@
       <div class="task">
         <FormItem label="任务周期">
           <Select v-model="Nowdoingdata.city" placeholder="Select your city" style="width: 187px" disabled>
-            <Option value="day">日</Option>
+                  <Option value="day">日</Option>
             <Option value="week">周</Option>
             <Option value="mounth">月</Option>
           </Select>
